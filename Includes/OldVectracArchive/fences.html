@@ -1,0 +1,139 @@
+<?php
+	
+	require_once '../Core/init.php';
+	$dbh = null;
+	
+	$user = new user();
+	$_db = db::getInstance();
+	
+
+	if(!$user->isLoggedIn()) {
+		redirect::to('index.php');
+	}
+
+?>
+
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Vectrack Tracking</title>
+	<?php require_once 'add_headinfo.php' ?> <!-- this adds css, javascript, bootstrap  -->
+</head> 
+		
+<body>
+	<?php require_once 'add_navbar.php' ?> <!-- this adds navbar -->
+	<div id="map" >
+	
+	</div>
+
+<script>
+
+		// create a map in the "map" div, set the view to a given place and zoom
+		var map = L.map('map').setView([-25.824743, 28.269716], 16);
+		var polylines;
+		var polylineArray = [];
+		var markerArray = [];
+		var markersTag;
+		var info = null;
+		// add an OpenStreetMap tile layer
+		mapLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+
+		var baseMaps = {
+				    "Map": mapLayer
+				    
+				};
+
+		
+
+		   
+	    
+	    function getData()
+	    {
+	    	
+    		$.post('../Scripts_Internal/getUnitPositions.php',{"Unit_Id":document.getElementById("Unit_Id_Query").value}, function(result) { 
+   				console.log(result); 
+   				
+			
+	   			var obj = jQuery.parseJSON(result);
+	   			var latlon = [];
+	   			
+	   			for(var i = 0;i < obj.length;i++){
+					latlon.push( {lat: obj[i]['Lat'], lon: obj[i]['Lon']});
+					
+	   				//L.marker([obj[i]['Lat'], obj[i]['Lon']]).addTo(map).bindPopup('Lat = '+ obj[i]['Lat'] + '& Long = ' + obj[i]['Lon']).openPopup();
+	   			}
+	   			//console.log(obj[0]);
+	   			markerArray.push(L.marker([obj[0]['Lat'], obj[0]['Lon']]).bindPopup('Lat = '+ obj[0]['Lat'] + ' & Long = ' + obj[0]['Lon'] + ' & Speed = ' + obj[0]['Speed'] ).openPopup());
+	   			markerArray.push(L.marker([obj[obj.length-1]['Lat'], obj[obj.length-1]['Lon']]).bindPopup('Lat = '+ obj[obj.length-1]['Lat'] + ' & Long = ' + obj[obj.length-1]['Lon'] + ' & Speed = ' + obj[obj.length-1]['Speed'] ).openPopup());
+				
+				//map.fitBounds(polyline.getBounds());
+				polylineArray.push(L.polyline(latlon,{color: pickColour()}));
+				polylines = L.layerGroup(polylineArray);
+				markersTag = L.layerGroup(markerArray);
+				// map.addLayer(polylines);
+	   			 polylines.addTo(map);
+	   			markersTag.addTo(map);
+				map.fitBounds(polylineArray[polylineArray.length-1].getBounds());
+
+
+				var overlayMaps = {
+				    "Markers": markersTag,
+				    "Paths" : polylines
+				};
+				if(!info)
+				{
+					info = L.control.layers(baseMaps,overlayMaps,{collapsed:false}).addTo(map);
+				}else
+				{
+					 map.removeControl(info);
+					 info  = L.control.layers(baseMaps,overlayMaps,{collapsed:false}).addTo(map);
+				}
+
+
+
+			});
+			 
+	    	
+
+	    } 
+
+
+
+
+	    function clearMap()
+	    {
+	    	
+
+			// Remove polylines from map
+			map.removeLayer(polylines);
+			map.removeLayer(markersTag);	
+			polylineArray = [];
+			markerArray = [];	
+	    }
+
+	    function pickColour(){
+	    	/*
+	    	var colours = ['Red','Blue','Green','Pink','Purple','Orange','Yellow'];
+
+	    	colour = colours[Math.floor((Math.random() * colours.length))];
+ 
+	    	return colour;
+	*/	
+
+			var letters = '0123456789ABCDEF'.split('');
+			var color = '#';
+			    for (var i = 0; i < 6; i++ ) 
+			    {
+			       color += letters[Math.round(Math.random() * 15)];
+			    }
+			return color;
+	    }
+
+	</script>
+</body>	
+	
+</html>

@@ -1,0 +1,6 @@
+Log/
+*.txt
+.htaccess
+.metadata
+.settings
+

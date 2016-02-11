@@ -1,0 +1,179 @@
+
+h2{
+	
+	text-align:center;
+}
+
+#hero{
+	
+	text-align:center;
+	border:solid;
+}
+
+#container{
+	
+	position: relative;
+	left:auto;
+	width:99%;
+	height:99%;
+	border:solid;
+	border-collapse:collapse;
+}
+
+
+
+#map { height: 70%; width:100%; display: inline-block; border:solid;}
+
+#userOptions{
+	display: inline-block;
+}
+
+
+.dropdown-backdrop {
+    position: static;				//fix for mobile safari dropdowns
+}
+
+
+.red_note{color: red;}
+
+
+
+ .navbar-brand a:link {color: #FFF;}      /* unvisited link */
+  .navbar-brand a:visited {color: #FFF;}   /* visited link */
+  .navbar-brand a:hover {color: #FFF;}     /* mouse over link */
+  .navbar-brand a:active {color: #FFF;}    /* selected link */
+  
+.accord_btn{margin: 5 0 0 0;}
+
+.move_up{margin: -23 0 0 0 ; }
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.myInputs {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  width: 210;
+  padding: 0px 9px;
+  height: inherit;
+}
+
+
+.form-control {
+    
+    width: 210;
+    padding: 0px 9px;
+    color: inherit;
+    font-size: inherit;
+    height: inherit;
+   
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse {
+    background-color: #00A7E1;
+    border-color: #00A7E1;
+}
+
+
+bootstrap-datetimepicker-widget {
+ z-index: 100000;
+ }
+
+
+.strong{
+  font-weight: bold;
+}
+
+
+.redlegend{
+  background-color: red;
+  outline: 0;
+ 
+}
+
+.orangelegend{
+  background-color: orange;
+  outline: 0;
+}
+
+.bluelegend{
+  background-color: #99C4E0;
+  outline: 0;
+}
+
+.greenlegend{
+  background-color: green;
+  outline: 0;
+ 
+}
+
+.maroonlegend{
+  background-color: maroon;
+  outline: 0;
+}
+
+.pinklegend{
+  background-color: #FF0066;
+  outline: 0;
+}
+
+.greylegend{
+  background-color: gray;
+  outline: 0;
+}
+
+
+ #my-menu {
+	      
+      background-color: #00A7E1;
+      color:#FFFFFF;
+   }
+   
+ #my-menu:not( .mm-menu ) {  
+   display: none;
+}
+   
+ .navbar-nav > li {border-right: 1px solid #FFF;}
+  .navbar-nav {border-left: 1px solid #FFF;}
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+#myChart{
+	
+	height: 50%;
+}
+
+@page {
+  size: A3;
+  size:landscape;
+  margin: 5;
+}
+
+@media print {
+  .noprint {
+    visibility: hidden;
+}
+.printthis {
+    visibility: visible;
+}
+}
+
+
+
+

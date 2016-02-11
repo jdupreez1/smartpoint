@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse">
+	  	<div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand">Vectrack</a>
+		    </div>
+		    <div>
+		      <ul class="nav navbar-nav">
+		        <li><a href="home.php">Home</a></li>
+		          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" >Settings <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="update.php">Update Profile</a></li>
+		            <li><a href="changepassword.php">Change Password</a></li>
+		            <li><a href="fences.php">Edit & Assign Geo Fences</a></li>
+		            <li><a href="notifications.php">Edit Notifications</a></li>
+		            <li><a href="rtuprofiles.php">RTU Profiles</a></li>
+		            <li><a href="alarms.php">Edit Alarms</a></li>
+		          </ul>
+		          <?php //check whether user has admin rights
+				 if($user->hasPermission('Admin')){ ?>
+				 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" >Admin Config <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="adduser.php">Add User</a></li>
+		            <li><a href="addrtu.php">Add RTU</a></li>
+		          </ul>
+				 <?php } ?>		          
+		        </li>
+		        <li><a href="downloads.php">Downloads</a></li>
+		        <li><a href="logout.php">Logout</a></li>
+		      </ul>
+		    </div>
+	  	</div>
+	</nav>
